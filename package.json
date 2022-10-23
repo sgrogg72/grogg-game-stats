@@ -1,0 +1,34 @@
+{
+  "name": "grogg-game-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startGameStat": "ts-node ./bin/gameStat.ts",
+    "createGameData": "ts-node ./scripts/createGameData.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgrogg72/grogg-game-stats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgrogg72/grogg-game-stats/issues"
+  },
+  "homepage": "https://github.com/sgrogg72/grogg-game-stats#readme",
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "@types/aws-lambda": "^8.10.108",
+    "@types/node": "^18.11.3",
+    "serverless-plugin-typescript": "^2.1.4",
+    "ts-node": "^10.9.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "jest": "^29.2.1",
+    "sqlite3": "^5.1.2"
+  }
+}
