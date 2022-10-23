@@ -12,5 +12,5 @@ export interface GameDataModel {
   points: string;
   penaltyMinutes: string;
   opponentTeam: string;
-  createdUnixTime: number;
+  createdUnixTime?: number;
 }
