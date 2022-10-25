@@ -4,6 +4,8 @@ import { liveGameJob } from './liveGameListener';
 const jobs: any = {};
 const job = schedule.scheduleJob('*/1 * * * * *', () => {
   // retrieve games...
+  // live games are indicated by statusCode
+  // statusCode 3, 4 should be inprogress
   // for each live game create a live game job
   const games: any = [ { id: 1, status: live }];
   games.map((game: any) => {
