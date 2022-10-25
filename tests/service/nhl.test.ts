@@ -26,7 +26,7 @@ describe('nhl service fetchScheduleByDate', () => {
 
 describe('nhl service fetchLiveGameById', () => {
   test('should include gameId', async () => {
-    const gameId = 2022020092;
+    const gameId = '2022020092';
     axios.get = jest.fn().mockResolvedValue({ data: mockGameData });
     const res = await fetchLiveGameById(gameId);
     expect(axios.get).toBeCalledWith(`https://statsapi.web.nhl.com/api/v1/game/${gameId}/feed/live`);
@@ -36,9 +36,10 @@ describe('nhl service fetchLiveGameById', () => {
       {
         teamId: 9,
         teamName: 'Ottawa Senators',
-        playerId: undefined,
+        playerId: 8480073,
         playerNumber: '26',
         playerPosition: 'Defenseman',
+        playerName: 'Erik Brannstrom',
         assists: 0,
         goals: 0,
         hits: 0,

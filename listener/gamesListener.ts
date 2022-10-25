@@ -8,7 +8,7 @@ interface Jobs {
 }
 
 const jobs: Jobs = {};
-const job = schedule.scheduleJob('*/1 * * * * *', async () => {
+const job = schedule.scheduleJob('*/10 * * * * *', async () => {
   // retrieve games...
   // live games are indicated by statusCode
   // statusCode 3, 4 should be inprogress
@@ -22,6 +22,7 @@ const job = schedule.scheduleJob('*/1 * * * * *', async () => {
     g.gameStatusCode !== GameStatusCode.inProgress &&
     g.gameStatusCode !== GameStatusCode.inProgressCritical);
 
+  // start game listeners
   gamesLive.forEach((game) => {
     const id = game.gamePk.toString();
     const foundIt = Object.keys(jobs).find((k) => k === id);
@@ -31,6 +32,7 @@ const job = schedule.scheduleJob('*/1 * * * * *', async () => {
     }
   });
 
+  // stop game listeners
   notLiveGames.forEach((game) => {
     const id = game.gamePk.toString();
     const foundIt = Object.keys(jobs).find((k) => k === id);

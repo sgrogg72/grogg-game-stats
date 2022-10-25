@@ -21,7 +21,7 @@ export interface Schedule {
 }
 
 export interface LiveGame {
-  gamePk: number;
+  gamePk: string;
   gameStatusCode: GameStatusCode;
   playerStats: PlayerStats[];
 }
@@ -32,6 +32,7 @@ export interface PlayerStats {
     playerId: number,
     playerNumber: number,
     playerPosition: string,
+    playerName: string,
     assists: number;
     goals: number;
     hits: number;

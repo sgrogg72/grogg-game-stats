@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { GameStatusCode, LiveGame, PlayerStats, Schedule } from './types';
 
-// assumptions: The api will return the required fields below gamePk and statusCode
 export const fetchScheduleByDate = async (date: Date): Promise<Schedule> => {
   const dateParam = `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDay()}}`;
   const res = await axios.get(`https://statsapi.web.nhl.com/api/v1/schedule?date${dateParam}`);
@@ -17,7 +16,7 @@ export const fetchScheduleByDate = async (date: Date): Promise<Schedule> => {
   return { games };
 };
 
-export const fetchLiveGameById = async (gameId: number): Promise<LiveGame> => {
+export const fetchLiveGameById = async (gameId: string): Promise<LiveGame> => {
   const res = await axios.get(`https://statsapi.web.nhl.com/api/v1/game/${gameId}/feed/live`);
   const homeTeam = res.data.liveData.boxscore.teams.home;
   const awayTeam = res.data.liveData.boxscore.teams.away;
@@ -27,35 +26,36 @@ export const fetchLiveGameById = async (gameId: number): Promise<LiveGame> => {
   const homePlayerStats = homePlayers.map((player) => {
     const stats = player.stats.goalieStats || player.stats.skaterStats;
     return {
-       
-       teamId: homeTeam.team.id,
-       teamName: homeTeam.team.name,
-       playerId: player.id,
-       playerNumber: player.jerseyNumber,
-       playerPosition: player.position.name,
-       assists: stats?.assists || 0,
-       goals: stats?.goals || 0,
-       hits: stats?.hits || 0,
-       points: stats?.points || 0,
-       penaltyMinutes: stats?.penaltyMinutes || 0,
-       opponentTeam: awayTeam.team.id,
+      teamId: homeTeam.team.id,
+      teamName: homeTeam.team.name,
+      playerId: player.person.id,
+      playerNumber: player.jerseyNumber,
+      playerPosition: player.position.name,
+      playerName: player.person.fullName,
+      assists: stats?.assists || 0,
+      goals: stats?.goals || 0,
+      hits: stats?.hits || 0,
+      points: stats?.points || 0,
+      penaltyMinutes: stats?.penaltyMinutes || 0,
+      opponentTeam: awayTeam.team.id,
     } as PlayerStats 
   });
 
   const awayPlayerStats = awayPlayers.map((player) => {
     const stats = player.stats.goalieStats || player.stats.skaterStats;
     return {
-       teamId: awayTeam.team.id,
-       teamName: awayTeam.team.name,
-       playerId: player.id,
-       playerNumber: player.jerseyNumber,
-       playerPosition: player.position.name,
-       assists: stats?.assists || 0,
-       goals: stats?.goals || 0,
-       hits: stats?.hits || 0,
-       points: stats?.points || 0,
-       penaltyMinutes: stats?.penaltyMinutes || 0,
-       opponentTeam: homeTeam.team.id,
+      teamId: awayTeam.team.id,
+      teamName: awayTeam.team.name,
+      playerId: player.id,
+      playerNumber: player.jerseyNumber,
+      playerPosition: player.position.name,
+      playerName: player.person.fullName,
+      assists: stats?.assists || 0,
+      goals: stats?.goals || 0,
+      hits: stats?.hits || 0,
+      points: stats?.points || 0,
+      penaltyMinutes: stats?.penaltyMinutes || 0,
+      opponentTeam: homeTeam.team.id,
     } as PlayerStats 
   });
 
