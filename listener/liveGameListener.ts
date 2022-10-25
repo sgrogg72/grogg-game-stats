@@ -12,22 +12,21 @@ export const liveGameJob = (id: string) => {
     playerStats.forEach((stats) => {
       const gameData: GameDataModel = {
         playerId: stats.playerId.toString(),
-        playerName: stats.;
-        teamId: string;
-        teamName: string;
-        playerAge: string;
-        playerNumber: string;
-        playerPosition: string;
-        assists: string;
-        goals: string;
-        hits: string;
-        points: string;
-        penaltyMinutes: string;
-        opponentTeam: string;
+        playerName: stats.playerName,
+        teamId: stats.teamId.toString(),
+        teamName: stats.teamName,
+        playerAge: '',
+        playerNumber: stats.playerNumber.toString(),
+        playerPosition: stats.playerPosition,
+        assists: stats.assists.toString(),
+        goals: stats.goals.toString(),
+        hits: stats.hits.toString(),
+        points: stats.points.toString(),
+        penaltyMinutes: stats.penaltyMinutes.toString(),
+        opponentTeam: stats.opponentTeam.toString(),
       }
-    }
-    save(gameData);
-    // final 5, 6, 7 should be final
-    console.log('run game job');
+      console.log('saving game data', JSON.stringify(gameData));
+      save(gameData);
+    });
   });
 }

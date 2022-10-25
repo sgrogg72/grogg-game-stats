@@ -38,4 +38,5 @@ export interface PlayerStats {
     hits: number;
     points: number;
     penaltyMinutes: number;
+    opponentTeam: number;
 }
