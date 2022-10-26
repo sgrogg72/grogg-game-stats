@@ -1,4 +1,6 @@
-## Create database
+## Getting Started
+
+### Create database
 
 The database is sqllite database that consists one table `GameData`.  To create the database and table run:
 
@@ -6,9 +8,9 @@ The database is sqllite database that consists one table `GameData`.  To create 
 yarn createGameData
 ```
 
-## build
+### build
 
-## Test
+### Test
 
 ```
 yarn test
@@ -16,5 +18,7 @@ yarn test
 
 ## Run
 
-Scheduler Game Stats
+```
+yarn start
+```
 

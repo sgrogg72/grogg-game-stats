@@ -3,7 +3,7 @@ export interface GameDataModel {
   playerName: string;
   teamId: string;
   teamName: string;
-  playerAge: string;
+  playerAge?: string;
   playerNumber: string;
   playerPosition: string;
   assists: string;

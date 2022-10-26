@@ -26,6 +26,10 @@ export interface LiveGame {
   playerStats: PlayerStats[];
 }
 
+export interface Player {
+  playerId: number,
+  age: number,
+}
 export interface PlayerStats {
     teamId: number,
     teamName: string,

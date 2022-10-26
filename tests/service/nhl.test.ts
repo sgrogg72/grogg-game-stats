@@ -3,11 +3,23 @@
 jest.mock("axios");
 import axios from "axios";
 
-import { fetchLiveGameById, fetchScheduleByDate } from "../../service/nhl";
+import { fetchLiveGameById, fetchPlayer, fetchScheduleByDate } from "../../service/nhl";
 import { GameStatusCode } from "../../service/types";
 import * as mockGameData from './liveData.json';
 
+describe('nhl service fetchPlayer', () => {
 
+  test('should retrieve player', async () => {
+    const playerId = 8480073;
+    axios.get = jest.fn().mockResolvedValue({ data: { people: [{ currentAge: 21}]}});
+    const res = await fetchPlayer(playerId);
+    expect(res).toBeDefined();
+    expect(axios.get).toBeCalledWith(`https://statsapi.web.nhl.com/api/v1/people/${playerId}`);
+    expect(res?.playerId).toBe(playerId);
+    expect(res?.age).toBe(21);
+
+  });
+});
 
 describe('nhl service fetchScheduleByDate', () => {
 

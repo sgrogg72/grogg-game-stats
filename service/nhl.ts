@@ -1,5 +1,18 @@
 import axios from 'axios';
-import { GameStatusCode, LiveGame, PlayerStats, Schedule } from './types';
+import { GameStatusCode, LiveGame, Player, PlayerStats, Schedule } from './types';
+
+export const fetchPlayer = async (playerId: number): Promise<Player | undefined> => {
+  const res = await axios.get(`https://statsapi.web.nhl.com/api/v1/people/${playerId}`);
+  const people = res.data.people;
+  // grab the first
+  if (people.length > 0) {
+    return {
+      playerId: playerId,
+      age: people[0].currentAge,
+    } as Player;
+  }
+  return undefined;
+}
 
 export const fetchScheduleByDate = async (date: Date): Promise<Schedule> => {
   const dateParam = `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDay()}}`;
