@@ -7,6 +7,7 @@ export const scheduleGameListener = async (currentJobs: Jobs) => {
   const jobs = {...currentJobs};
 
   const schedule = await fetchScheduleByDate(new Date());
+  console.log('processing schedule', JSON.stringify(schedule));
   const gamesLive = schedule.games.filter(g =>
     g.gameStatusCode === GameStatusCode.inProgress ||
     g.gameStatusCode === GameStatusCode.inProgressCritical);
