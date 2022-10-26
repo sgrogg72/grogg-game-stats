@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "startGameStat": "ts-node ./bin/gameStatScheduler.ts",
+    "start": "ts-node ./listener/gamesListener.ts",
     "createGameData": "ts-node ./scripts/createGameData.ts",
     "test": "yarn jest"
   },

@@ -1,19 +1,22 @@
-import schedule from 'node-schedule';
+import schedule, { Job } from 'node-schedule';
 import { fetchScheduleByDate } from '../service/nhl';
-import { GameStatusCode, ScheduleGame } from '../service/types';
+import { GameStatusCode } from '../service/types';
 import { liveGameJob } from './liveGameListener';
 
 interface Jobs {
-  [key: string]: schedule.Job;
+  [key: string]: Job;
 }
 
 const jobs: Jobs = {};
-const job = schedule.scheduleJob('*/10 * * * * *', async () => {
+
+schedule.scheduleJob('*/10 * * * * *', async () => {
   // retrieve games...
   // live games are indicated by statusCode
   // statusCode 3, 4 should be inprogress
   // for each live game create a live game job
   const schedule = await fetchScheduleByDate(new Date());
+  console.log('fetch schedule', JSON.stringify(schedule));
+
   const gamesLive = schedule.games.filter(g =>
     g.gameStatusCode === GameStatusCode.inProgress ||
     g.gameStatusCode === GameStatusCode.inProgressCritical);
