@@ -12,7 +12,7 @@ export enum GameStatusCode {
 }
 
 export interface ScheduleGame {
-  gamePk: number;
+  gamePk: string;
   gameStatusCode: GameStatusCode;
 }
 

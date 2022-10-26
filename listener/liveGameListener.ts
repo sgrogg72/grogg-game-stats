@@ -4,8 +4,10 @@ import { ingest } from '../job/gameIngest';
 
 export const liveGameJob = (id: string) => {
   return schedule.scheduleJob('*/10 * * * * *', async () => {
-    console.log('ingest game', id);
-    ingest(id);
-
+    try {
+      ingest(id);
+    } catch (err) {
+      console.error(err);
+    }
   });
 }

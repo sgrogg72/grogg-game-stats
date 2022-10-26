@@ -5,7 +5,6 @@ import { fetchLiveGameById } from "../service/nhl";
 export const ingest = async (gameId: string) => {
   // statusCode 3, 4 should be inprogress
   const game = await fetchLiveGameById(gameId);
-  console.log('game', game);
   const { playerStats } = game;
   playerStats.forEach((stats) => {
     const gameData: GameDataModel = {
